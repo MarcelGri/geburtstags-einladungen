@@ -259,6 +259,77 @@
         margin: 0.5rem 0;
       }
     }
+    .carousel-container {
+  width: 60%;
+  max-width: 400px;
+  margin: 2rem auto;
+  position: relative;
+  border: 5px ridge #ff00ff;
+  background: #000000;
+  padding: 1rem;
+  overflow: hidden;
+}
+
+.carousel-slide {
+  display: none;
+  text-align: center;
+  animation: flash 2s infinite;
+  padding: 1rem;
+}
+
+.carousel-slide.active {
+  display: block;
+}
+
+.carousel-slide img {
+  max-width: 100%;
+  height: auto;
+  border: 3px outset #00ff00;
+}
+
+.carousel-caption {
+  margin-top: 1rem;
+  color: #00ff00;
+  text-shadow: 2px 2px #ff00ff;
+  font-size: clamp(14px, 3vw, 18px);
+}
+
+.carousel-nav {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.carousel-button {
+  background: #000080;
+  color: #00ff00;
+  border: 3px outset #ff00ff;
+  padding: 0.5rem 1rem;
+  margin: 0 0.5rem;
+  cursor: pointer;
+  animation: rainbow 2s infinite;
+  font-size: clamp(14px, 3vw, 16px);
+}
+
+.carousel-dots {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.dot {
+  height: 15px;
+  width: 15px;
+  margin: 0 5px;
+  background-color: #00ff00;
+  border: 2px solid #ff00ff;
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.dot.active {
+  background-color: #ff00ff;
+  animation: blink 1s infinite;
+}
   </style>
 
 </head>
@@ -271,7 +342,34 @@
       <img src="spinning_img.png" alt="Achtung" class="spinning-image-2" width="50" height="50" />
     </div>
 
-    <h1 class="word-art">🎉 24. Mai 14:00 UHR, LÜSNER ALM 🎉</h1>
+    <h1 class="word-art">🎉 21. Juni 14:00 UHR, LÜSNER ALM 🎉</h1>
+
+    <div class="carousel-container">
+      <div class="carousel-slide active">
+        <img src="party_image1.jpg" alt="Party Image 1" />
+        <div class="carousel-caption">Feierliche Eröffnung einer Treppe auf dem Ritten</div>
+      </div>
+      <div class="carousel-slide">
+        <img src="party_image2.jpg" alt="Party Image 2" />
+        <div class="carousel-caption">Abschluss der Verhandlungen rund um die Gerburtstagsfeier</div>
+      </div>
+      <div class="carousel-slide">
+        <img src="party_image3.jpg" alt="Party Image 3" />
+        <div class="carousel-caption">Gemeinsame Wanderung durch den unterirdischer Saban-Fluss, Palawan auf den Philippinen.
+        </div>
+      </div>
+      
+      <div class="carousel-nav">
+        <button class="carousel-button" onclick="moveSlide(-1)">⬅️ Zurück</button>
+        <button class="carousel-button" onclick="moveSlide(1)">Weiter ➡️</button>
+      </div>
+      
+      <div class="carousel-dots">
+        <span class="dot active" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+      </div>
+    </div>
 
     <!-- Hit Counter -->
     <div class="hit-counter">
@@ -282,7 +380,7 @@
     <div class="info-section">
       <div class="section-header">🎮 WICHTIGSTE INFOS 🎮</div>
       <marquee scrollamount="5" direction="left">
-        ⭐ SAMSTAG 24. Mai ⭐ MIT TAGESPROGRAMM ⭐ MIT ÜBERNACHTUNGSMÖGLICHKEIT ⭐ BE THERE OR BE SQUARE! ⭐
+        ⭐ SAMSTAG 21. Juni ⭐ MIT TAGESPROGRAMM ⭐ MIT ÜBERNACHTUNGSMÖGLICHKEIT ⭐ 
       </marquee>        
       <div class="details-grid">
         <!-- Location -->
@@ -369,7 +467,7 @@
 
         <!-- Top Banner with Badges -->
         <div class="top-banner">
-          <div class="badge">Beauftrage mich für DEINE Website!</div>
+          <div class="badge">Beauftrage uns für DEINE Website!</div>
           <div class="badge">Genieße diese Website am besten mit deinem Nokia 3310</div>
           <div class="badge">Erstellt mit Microsoft Word 98!</div>
         </div>
@@ -407,7 +505,45 @@
       } else {
         console.error('The .hit-counter element was not found in the DOM.');
       }
+
+    
     </script>
+    <script>
+      let slideIndex = 1;
+      showSlides(slideIndex);
+      
+      function moveSlide(n) {
+        showSlides(slideIndex += n);
+      }
+      
+      function currentSlide(n) {
+        showSlides(slideIndex = n);
+      }
+      
+      function showSlides(n) {
+        let i;
+        let slides = document.getElementsByClassName("carousel-slide");
+        let dots = document.getElementsByClassName("dot");
+        
+        if (n > slides.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = slides.length}
+        
+        for (i = 0; i < slides.length; i++) {
+          slides[i].classList.remove("active");
+        }
+        for (i = 0; i < dots.length; i++) {
+          dots[i].classList.remove("active");
+        }
+        
+        slides[slideIndex-1].classList.add("active");
+        dots[slideIndex-1].classList.add("active");
+      }
+      
+      // Auto advance slides every 5 seconds
+      setInterval(() => {
+        moveSlide(1);
+      }, 5000);
+      </script>
     </html>
 
     
