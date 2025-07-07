@@ -25,8 +25,8 @@ BEGIN:VEVENT
 UID:ics.terminsysteme.de1736170412
 DTSTAMP:20250106T143332
 CLASS:PUBLIC
-DTSTART;TZID=Europe/Berlin:20250524T140000
-DTEND;TZID=Europe/Berlin:20250525T060000
+DTSTART;TZID=Europe/Berlin:20250802T140000
+DTEND;TZID=Europe/Berlin:20250802T060000
 LOCATION:Lüsner Alm
 SUMMARY:Proschi und Cels 30er Feier
 DESCRIPTION: Alle wichtigen Informationen findest du hier: marcelgri.github.io/geburtstags-einladungen/
@@ -37,3 +37,6 @@ DESCRIPTION:Erinnerung
 END:VALARM
 END:VEVENT
 END:VCALENDAR
+
+
+
